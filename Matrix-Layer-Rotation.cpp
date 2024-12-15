@@ -14,71 +14,9 @@ vector<string> split(const string &);
  *  2. INTEGER r
  */
 
-// https://www.hackerrank.com/challenges/matrix-rotation-algo/forum : From rustedwizard
 
 void matrixRotation(vector<vector<int>> matrix, int r)
 {
-    int mStart = 0;
-    int nStart = 0;
-    int m = matrix.size() - 1;
-    int n = matrix[0].size() - 1;
-    
-    while (mStart < m && nStart < n)
-    {
-        int t = r;
-        
-        if (t > (((m-mStart) + (n-nStart)) * 2))
-        {
-            t = t % (((m - mStart) + (n - nStart)) * 2);
-        }
-        
-        while (t > 0)
-        {
-            int prev = matrix[mStart][nStart];
-
-            // Shift top row
-            for (int i = nStart; i <= n - 1; ++i)
-            {
-                matrix[mStart][i] = matrix[mStart][i + 1];
-            }
-            
-            // Shift right most column
-            for (int i = mStart; i <= m - 1; ++i)
-            {
-                matrix[i][n] = matrix[i + 1][n];
-            }
-            
-            // Shift bottom row
-            for (int i = n; i >= nStart + 1; --i)
-            {
-                matrix[m][i] = matrix[m][i - 1];
-            }
-            
-            // Shift left most column
-            for (int i = m; i > mStart + 1; --i)
-            {
-                matrix[i][nStart] = matrix[i - 1][nStart];
-            }
-            
-            matrix[mStart + 1][nStart] = prev;
-            t--;
-        }
-        
-        mStart++;
-        nStart++;
-        m--;
-        n--;
-    }
-    
-    for (int i = 0; i < matrix.size(); ++i)
-    {
-        for (const auto& e : matrix[i])
-        {
-            std::cout << e << " ";
-        }
-        
-        std::cout << '\n';
-    }
 }
 
 int main()
