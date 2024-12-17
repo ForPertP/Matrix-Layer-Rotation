@@ -15,6 +15,61 @@ vector<string> split(const string &);
  */
 
 void matrixRotation(vector<vector<int>> matrix, int r) {
+    int m = matrix.size();
+    int n = matrix[0].size();
+
+    vector<vector<int>> result(m, vector<int>(n));
+
+    for (int layer = 0; layer < min(m, n) / 2; ++layer) {
+        vector<int> elements;
+
+        int top = layer;
+        int left = layer;
+        int bottom = m - layer - 1;
+        int right = n - layer - 1;
+
+        for (int i = left; i <= right; ++i) {
+            elements.push_back(matrix[top][i]);
+        }
+
+        for (int i = top + 1; i <= bottom; ++i) {
+            elements.push_back(matrix[i][right]);
+        }
+
+        for (int i = right - 1; i >= left; --i) {
+            elements.push_back(matrix[bottom][i]);
+        }
+
+        for (int i = bottom - 1; i > top; --i) {
+            elements.push_back(matrix[i][left]);
+        }
+
+        int rotation = r % elements.size();
+
+        vector<int> rotated_elements(elements.size());
+        for (int i = 0; i < elements.size(); ++i) {
+            rotated_elements[i] = elements[(i + rotation) % elements.size()];
+        }
+
+        int idx = 0;
+
+        for (int i = left; i <= right; ++i) {
+            result[top][i] = rotated_elements[idx++];
+        }
+
+        for (int i = top + 1; i <= bottom; ++i) {
+            result[i][right] = rotated_elements[idx++];
+        }
+
+        for (int i = right - 1; i >= left; --i) {
+            result[bottom][i] = rotated_elements[idx++];
+        }
+
+        for (int i = bottom - 1; i > top; --i) {
+            result[i][left] = rotated_elements[idx++];
+        }
+    }
+
     for (const auto& row : result) {
         for (int val : row) {
             cout << val << " ";
