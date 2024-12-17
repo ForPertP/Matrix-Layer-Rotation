@@ -14,10 +14,15 @@ vector<string> split(const string &);
  *  2. INTEGER r
  */
 
-
-void matrixRotation(vector<vector<int>> matrix, int r)
-{
+void matrixRotation(vector<vector<int>> matrix, int r) {
+    for (const auto& row : result) {
+        for (int val : row) {
+            cout << val << " ";
+        }
+        cout << endl;
+    }
 }
+
 
 int main()
 {
@@ -34,8 +39,7 @@ int main()
 
     vector<vector<int>> matrix(m);
 
-    for (int i = 0; i < m; i++)
-    {
+    for (int i = 0; i < m; i++) {
         matrix[i].resize(n);
 
         string matrix_row_temp_temp;
@@ -57,23 +61,19 @@ int main()
 
 string ltrim(const string &str) {
     string s(str);
-
     s.erase(
         s.begin(),
-        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
+        find_if(s.begin(), s.end(), [](unsigned char ch) { return !isspace(ch); })
     );
-
     return s;
 }
 
-string rtrim(const string &str) {
-    string s(str);
-
+std::string rtrim(const std::string &str) {
+    std::string s(str);
     s.erase(
-        find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
+        std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base(),
         s.end()
     );
-
     return s;
 }
 
