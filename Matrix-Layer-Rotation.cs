@@ -33,7 +33,26 @@ class Result
         {
             result.Add(new List<int>(new int[n]));
         }
+
+        for (int layer = 0; layer < Math.Min(m, n) / 2; ++layer)
+        {
+            List<int> elements = new List<int>();
+
+            int top = layer;
+            int left = layer;
+            int bottom = m - layer - 1;
+            int right = n - layer - 1;
+
+        foreach (var row in result)
+        {
+            foreach (var val in row)
+            {
+                Console.Write(val + " ");
+            }
+            Console.WriteLine();
+        }
     }
+
 }
 
 
