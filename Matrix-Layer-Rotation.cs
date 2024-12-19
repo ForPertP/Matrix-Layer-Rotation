@@ -14,7 +14,6 @@ using System;
 
 class Result
 {
-
     /*
      * Complete the 'matrixRotation' function below.
      *
@@ -42,6 +41,57 @@ class Result
             int left = layer;
             int bottom = m - layer - 1;
             int right = n - layer - 1;
+
+            for (int i = left; i <= right; ++i)
+            {
+                elements.Add(matrix[top][i]);
+            }
+
+            for (int i = top + 1; i <= bottom; ++i)
+            {
+                elements.Add(matrix[i][right]);
+            }
+
+            for (int i = right - 1; i >= left; --i)
+            {
+                elements.Add(matrix[bottom][i]);
+            }
+
+            for (int i = bottom - 1; i > top; --i)
+            {
+                elements.Add(matrix[i][left]);
+            }
+
+            int rotation = r % elements.Count;
+
+            List<int> rotatedElements = new List<int>(new int[elements.Count]);
+            for (int i = 0; i < elements.Count; ++i)
+            {
+                rotatedElements[i] = elements[(i + rotation) % elements.Count];
+            }
+
+            int idx = 0;
+
+            for (int i = left; i <= right; ++i)
+            {
+                result[top][i] = rotatedElements[idx++];
+            }
+
+            for (int i = top + 1; i <= bottom; ++i)
+            {
+                result[i][right] = rotatedElements[idx++];
+            }
+
+            for (int i = right - 1; i >= left; --i)
+            {
+                result[bottom][i] = rotatedElements[idx++];
+            }
+
+            for (int i = bottom - 1; i > top; --i)
+            {
+                result[i][left] = rotatedElements[idx++];
+            }
+        }
 
         foreach (var row in result)
         {
