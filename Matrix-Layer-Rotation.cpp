@@ -117,17 +117,16 @@ int main()
 string ltrim(const string &str) {
     string s(str);
     s.erase(
-        s.begin(),
-        find_if(s.begin(), s.end(), [](unsigned char ch) { return !isspace(ch); })
+        s.begin(), find_if(s.begin(), s.end(), [](unsigned char ch) { return !isspace(ch); })
     );
     return s;
 }
 
-std::string rtrim(const std::string &str) {
+std::string rtrim(const std::string &str)
+{
     std::string s(str);
     s.erase(
-        std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base(),
-        s.end()
+        find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !isspace(ch); }).base(), s.end()
     );
     return s;
 }
