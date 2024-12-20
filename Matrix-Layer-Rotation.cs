@@ -102,7 +102,6 @@ class Result
             Console.WriteLine();
         }
     }
-
 }
 
 
