@@ -21,16 +21,27 @@ class Result {
      */
 
     public static void matrixRotation(List<List<Integer>> matrix, int r) {
-        int m = matrix.size();
-        int n = matrix.get(0).size();
+ int n = matrix[0].size();
 
-        List<List<Integer>> result = new ArrayList<>();
-        for (int i = 0; i < m; i++) {
-            result.add(new ArrayList<>(n));
-            for (int j = 0; j < n; j++) {
-                result.get(i).add(0);
-            }
+    vector<vector<int>> result(m, vector<int>(n));
+
+    for (int layer = 0; layer < min(m, n) / 2; ++layer) {
+        vector<int> elements;
+
+        int top = layer;
+        int left = layer;
+        int bottom = m - layer - 1;
+        int right = n - layer - 1;
+
+        for (int i = left; i <= right; ++i) {
+            elements.push_back(matrix[top][i]);
         }
+
+        for (int i = top + 1; i <= bottom; ++i) {
+            elements.push_back(matrix[i][right]);
+        }
+
+      
 
 
 }
